@@ -12,7 +12,6 @@ GAME_START () {
 
   # assign user
   ADD_SECRET_NUMBER=$($PSQL "INSERT INTO games(user_id, secret_number) VALUES($USERID, $SECRET_NUMBER);") 
-  
   if [[ $ADD_SECRET_NUMBER == "INSERT 0 1" ]]
   then
     # get game_id
@@ -32,7 +31,7 @@ ADD_USER () {
   if [[ -z $USERID ]]
   # if new user
   then
-    # add new user to db
+  #  # add new user to db
     ADD_USER=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME');")
     if [[ $ADD_USER == "INSERT 0 1" ]]
     then
