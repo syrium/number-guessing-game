@@ -16,7 +16,7 @@ GAME_START () {
   if [[ $ADD_SECRET_NUMBER == "INSERT 0 1" ]]
   then
     # get game_id
-    GAMEID=$($PSQL "SELECT game_id FROM games WHERE secret_number=$SECRET_NUMBER;")
+    GAMEID=$($PSQL "SELECT game_id FROM games WHERE user_id=$USERID AND secret_number=$SECRET_NUMBER;")
     echo "Guess the secret number between 1 and 1000:"
     read USERGUESS
 
@@ -30,27 +30,35 @@ GAME_START () {
   #    if [[ $USERGUESS < 1001 ]]
   #    then  
     # check if it match with the secret_number
-    SECRET_NUMBER=$($PSQL "SELECT secret_number FROM games WHERE game_id=$GAMEID;")
-    while [[ $SECRET_NUMBER -ne $USERGUESS ]];
+    #SECRET_NUMBER=$($PSQL "SELECT secret_number FROM games WHERE game_id=$GAMEID;")
+    while [[ $USERGUESS -ne $SECRET_NUMBER ]];
     do  
       ((NUMBER_OF_GUESSES++))      
       if [[ $USERGUESS =~ ^[0-9]+$ ]]
       then
         # if not match
         # if lower than the secret_number
-        if [[ $USERGUESS < $SECRET_NUMBER ]]
+        if (( $USERGUESS < $SECRET_NUMBER ))
         then
           echo "It's higher than that, guess again:"
           read USERGUESS
-        else
+          echo "user guess = $USERGUESS, secret number = $SECRET_NUMBER"
+        elif (( $USERGUESS > $SECRET_NUMBER && $USERGUESS < 1001))
+        then
         # if higher than the secret_number
           echo "It's lower than that, guess again:"
           read USERGUESS
+#          echo "user guess = $USERGUESS, secret number = $SECRET_NUMBER"
+        else
+          echo "It's out of bound, guess again:"
+          read USERGUESS
+#          echo "user guess = $USERGUESS, secret number = $SECRET_NUMBER"
         fi
       else
         # if input is not an integer
         echo "That is not an integer, guess again:"
         read USERGUESS
+        #echo "user guess = $USERGUESS, secret number = $SECRET_NUMBER"
       fi
     done
 
@@ -74,8 +82,6 @@ GAME_START () {
 
   fi
 }
-
-
 
 # get username
 echo "Enter your username:"
