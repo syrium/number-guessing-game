@@ -63,7 +63,6 @@ GAME_START () {
 # get username
 echo "Enter your username:"
 read USERNAME
-
 # check if it is an old user
 USERID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME';")
 
@@ -86,4 +85,3 @@ USERID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME';")
     echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
     GAME_START $USERID
   fi
-
