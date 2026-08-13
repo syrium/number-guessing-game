@@ -18,7 +18,6 @@ GAME_START () {
     # get game_id
     GAMEID=$($PSQL "SELECT game_id FROM games WHERE secret_number=$SECRET_NUMBER;")
     GUESS_CHECK "Guess the secret number between 1 and 1000:" $GAMEID 
-
   fi
 }
 
@@ -38,7 +37,7 @@ ADD_USER () {
     then
       NEW_USERID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME';")
       echo "Welcome, $USERNAME! It looks like this is your first time here."
-      GAME_START $NEW_USERID
+      #GAME_START $NEW_USERID
     fi
   else
     # if an old user
@@ -46,7 +45,7 @@ ADD_USER () {
     GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE user_id = $USERID;")
     BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE user_id= $USERID;")
     echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
-    GAME_START $USERID
+    #GAME_START $USERID
   fi
 }
 
@@ -54,7 +53,7 @@ GUESS_CHECK () {
 
   if [[ $1,$2 ]]
   then
-    echo "$1"
+    echo $1
     GAMEID=$2
   fi
 
