@@ -45,7 +45,7 @@ ADD_USER () {
     # get games_played, best_game
     GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE user_id = $USERID;")
     BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE user_id= $USERID;")
-    echo "nWelcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
+    echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
     GAME_START $USERID
   fi
 }
@@ -54,7 +54,7 @@ GUESS_CHECK () {
 
   if [[ $1,$2 ]]
   then
-    echo "$1"
+    echo $1
     GAMEID=$2
   fi
 
