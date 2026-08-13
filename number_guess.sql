@@ -85,9 +85,7 @@ ALTER SEQUENCE public.games_game_id_seq OWNED BY public.games.game_id;
 
 CREATE TABLE public.users (
     user_id integer NOT NULL,
-    username character varying(22) NOT NULL,
-    games_played integer DEFAULT 0 NOT NULL,
-    best_game integer DEFAULT 0 NOT NULL
+    username character varying(22) NOT NULL
 );
 
 
@@ -133,42 +131,35 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 -- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.games VALUES (23, 10, 889, 7);
-INSERT INTO public.games VALUES (24, 10, 212, 7);
-INSERT INTO public.games VALUES (35, 11, 669, 120);
-INSERT INTO public.games VALUES (31, 12, 839, 982);
-INSERT INTO public.games VALUES (32, 12, 803, 749);
-INSERT INTO public.games VALUES (34, 11, 450, 312);
-INSERT INTO public.games VALUES (30, 11, 299, 1234);
-INSERT INTO public.games VALUES (33, 11, 305, 524);
-INSERT INTO public.games VALUES (25, 10, 378, 16);
-INSERT INTO public.games VALUES (26, 10, 982, 3);
-INSERT INTO public.games VALUES (27, 10, 579, 11);
-INSERT INTO public.games VALUES (28, 10, 998, 0);
-INSERT INTO public.games VALUES (29, 11, 81, 82);
+INSERT INTO public.games VALUES (177, 79, 153, 154);
+INSERT INTO public.games VALUES (178, 79, 633, 634);
+INSERT INTO public.games VALUES (179, 80, 679, 680);
+INSERT INTO public.games VALUES (180, 80, 747, 748);
+INSERT INTO public.games VALUES (181, 79, 614, 617);
+INSERT INTO public.games VALUES (182, 79, 807, 809);
+INSERT INTO public.games VALUES (183, 79, 130, 131);
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.users VALUES (10, '123', 5, 11);
-INSERT INTO public.users VALUES (11, 'user_1786559592837', 1, 82);
-INSERT INTO public.users VALUES (12, 'user_1786559592836', 0, 0);
+INSERT INTO public.users VALUES (79, 'user_1786642958267');
+INSERT INTO public.users VALUES (80, 'user_1786642958266');
 
 
 --
 -- Name: games_game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.games_game_id_seq', 35, true);
+SELECT pg_catalog.setval('public.games_game_id_seq', 183, true);
 
 
 --
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 12, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 80, true);
 
 
 --
