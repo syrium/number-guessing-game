@@ -12,7 +12,6 @@ GAME_START () {
 
   # assign user
   ADD_SECRET_NUMBER=$($PSQL "INSERT INTO games(user_id, secret_number) VALUES($USERID, $SECRET_NUMBER);") 
-  
   if [[ $ADD_SECRET_NUMBER == "INSERT 0 1" ]]
   then
     # get game_id
